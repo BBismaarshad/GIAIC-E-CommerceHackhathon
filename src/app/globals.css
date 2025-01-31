@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.custom-img{
+    background-image: url('../../public/women.png');
+}
+.hero{
+    background-size: cover;
+    background-position: center;
+    height:80vh ;
+    
+    
+     overflow: hidden;
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    text-align: center;
+    color: white;
+    padding-left: 60px;
+
+    .container{
+        max-width:1400px;
+        padding:0 2rem;
+        margin:0 auto;
+      }
+      /* About  */
+.about{
+    background-size: cover;
+    background-position: center;
+    height:120vh ;
+    
+    
+     overflow: hidden;
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    text-align: center;
+    color: white;
+    padding-left: 60px;
+  }
+  .cart-wrapper{
+    @apply w-[100vw] bg-black bg-opacity-50  fixed right-0 top-0 z-10;
+  }
+  .cart-container{
+    @apply border h-[100vh]  w-[600px] bg-white  float-right px-[40px] py-[50px] relative;
+  }
+  }  
