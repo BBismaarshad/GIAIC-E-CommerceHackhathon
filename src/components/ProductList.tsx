@@ -198,7 +198,7 @@ export default function ProductList() {
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
     swal.fire({
-      position: "top-end",
+      position: "top",
       icon: "success",
       title: `${product.productName} added to cart!`,
       showConfirmButton: false,
