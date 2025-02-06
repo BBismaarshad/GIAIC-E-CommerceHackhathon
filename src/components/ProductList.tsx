@@ -212,7 +212,7 @@ export default function ProductList() {
         <h4 className="font-semibold text-center mb-1 text-xl text-gray-500">
           Featured Products
         </h4>
-        <h2 className="text-center font-semibold text-3xl md:text-5xl mt-5 text-gray-900">
+        <h2 className="text-center font-semibold text-3xl md:text-5xl mt-5 text-gray-800">
           BESTSELLER PRODUCTS
         </h2>
         <p className="text-center mt-5 mb-10 font-light text-sm text-gray-500">
@@ -220,33 +220,43 @@ export default function ProductList() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10">
           {product.map((product) => (
-            <div key={product._id} className="bg-white rounded-lg shadow-md p-5 flex flex-col items-center w-[300px] h-[500px]">
+            <div key={product._id} className="bg-white rounded-lg shadow-md p-5 flex flex-col items-center w-72 h-[500px]">
               <Link href={`/product/${product.slug.current}`}>
-                {product.image && (
-                  <Image
-                    src={urlFor(product.image).url()}
-                    alt="product images"
-                    width={239}
-                    height={427}
-                  />
-                )}
-                <h3 className="font-bold text-center text-gray-900 pt-5">
-                  {product.productName}
-                </h3>
-                <h5 className="text-gray-500 text-center font-bold py-2">
-                  English Department
-                </h5>
+                <div>
+                  {product.image && (
+                    <Image
+                      src={urlFor(product.image).url()}
+                      alt={product.productName}
+                      width={239}
+                      height={427}
+                      className="rounded-md"
+                    />
+                  )}
+                </div>
+                <h3 className="font-bold text-center text-gray-800 pt-5">{product.productName}</h3>
+                <h5 className="text-gray-500 text-center font-bold py-2">English Department</h5>
                 <h6 className="text-center">
-                  <span className="text-gray-400 font-bold">$16.48</span>{" "}
-                  <span className="font-bold text-green-700">$6.48</span>
+                  <span className="text-gray-400 font-bold line-through">$16.48</span> 
+                  <span className="font-bold text-green-600"> $6.48</span>
                 </h6>
+                <div className="flex justify-center space-x-2 py-3">
+                  {[14, 15, 16, 17].map((ellipse, i) => (
+                    <Image
+                      key={i}
+                      src={`/Ellipse ${ellipse}.png`}
+                      alt="color option"
+                      width={16}
+                      height={16}
+                    />
+                  ))}
+                </div>
+                <button
+                  className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out"
+                  onClick={(e) => handleAddToCard(e, product)}
+                >
+                  Add to Cart
+                </button>
               </Link>
-              <button
-                className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out mt-4"
-                onClick={(e) => handleAddToCard(e, product)}
-              >
-                Add To Cart
-              </button>
             </div>
           ))}
         </div>
@@ -254,4 +264,3 @@ export default function ProductList() {
     </div>
   );
 }
-
