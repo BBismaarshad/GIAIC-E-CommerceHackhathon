@@ -1,61 +1,90 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
   FaPhoneAlt,
   FaTwitter,
   FaYoutube,
+  FaChevronDown,
+  FaChevronUp,
 } from "react-icons/fa";
 
 import { MdOutlineMailOutline } from "react-icons/md";
 
 export default function Header() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <header>
-      {/* Top Bar */}
-      <div className="hidden md:flex flex-col h-[58px] md:flex-row items-center justify-between bg-[#252B42] px-4 py-2 text-sm">
-        {/* Contact Info Section */}
-        <div className="flex items-center space-x-3 text-white font-bold">
-          {/* Phone Number */}
-          <FaPhoneAlt className="text-sm" />
-          <a href="#" className="hover:text-cyan-400 text-sm">
+      {/* Mobile Toggle Button */}
+      <div className="md:hidden bg-[#252B42] px-4 py-2 flex justify-between items-center">
+        <div className="flex items-center space-x-2 text-white text-sm">
+          <FaPhoneAlt />
+          <a href="tel:(225) 555-0118" className="hover:text-cyan-400">
             (225) 555-0118
           </a>
+        </div>
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="text-white hover:text-cyan-400 transition"
+          aria-label="Toggle header expansion"
+        >
+          {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
+        </button>
+      </div>
+
+      {/* Top Bar - Responsive */}
+      <div
+        className={`${
+          isExpanded ? "max-h-screen" : "max-h-0 md:max-h-none"
+        } overflow-hidden md:overflow-visible transition-all duration-300 flex-col md:flex h-auto md:h-[58px] md:flex-row items-center justify-between bg-[#252B42] px-4 py-3 md:py-2 text-sm`}
+      >
+        {/* Contact Info Section */}
+        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-3 text-white font-bold">
+          {/* Phone Number */}
+          <div className="flex items-center space-x-2">
+            <FaPhoneAlt className="text-xs" />
+            <a href="tel:(225) 555-0118" className="hover:text-cyan-400 text-xs sm:text-sm">
+              (225) 555-0118
+            </a>
+          </div>
           {/* Email Address */}
-          <MdOutlineMailOutline className="text-sm" />
-          <a href="#" className="hover:text-cyan-400 text-sm">
-            michelle.rivera@example.com
-          </a>
+          <div className="flex items-center space-x-2">
+            <MdOutlineMailOutline className="text-xs" />
+            <a href="mailto:michelle.rivera@example.com" className="hover:text-cyan-400 text-xs sm:text-sm truncate max-w-[200px] md:max-w-none">
+              michelle.rivera@example.com
+            </a>
+          </div>
         </div>
 
         {/* Promotional Message */}
-        <div className="flex items-center space-x-2 text-white font-bold text-sm">
+        <div className="flex items-center space-x-2 text-white font-bold text-xs sm:text-sm mt-2 md:mt-0 text-center md:text-left">
           <a href="#" className="font-bold hover:text-cyan-400">
             Follow Us and get a chance to win 80% off
           </a>
         </div>
 
         {/* Social Media Links */}
-        <div className="flex items-center space-x-3 text-white">
-          <span className="hover:text-cyan-400 text-sm font-bold">
+        <div className="flex items-center space-x-3 text-white mt-2 md:mt-0">
+          <span className="hover:text-cyan-400 text-xs sm:text-sm font-bold">
             Follow Us:
           </span>
           {/* Facebook */}
-          <a href="#">
-            <FaFacebook className="text-sm hover:text-cyan-400" />
+          <a href="#" aria-label="Facebook">
+            <FaFacebook className="text-sm hover:text-cyan-400 transition" />
           </a>
           {/* YouTube */}
-          <a href="#">
-            <FaYoutube className="text-sm hover:text-cyan-400" />
+          <a href="#" aria-label="YouTube">
+            <FaYoutube className="text-sm hover:text-cyan-400 transition" />
           </a>
           {/* Instagram */}
-          <a href="#">
-            <FaInstagram className="text-sm hover:text-cyan-400" />
+          <a href="#" aria-label="Instagram">
+            <FaInstagram className="text-sm hover:text-cyan-400 transition" />
           </a>
           {/* Twitter */}
-          <a href="#">
-            <FaTwitter className="text-sm hover:text-cyan-400" />
+          <a href="#" aria-label="Twitter">
+            <FaTwitter className="text-sm hover:text-cyan-400 transition" />
           </a>
         </div>
       </div>

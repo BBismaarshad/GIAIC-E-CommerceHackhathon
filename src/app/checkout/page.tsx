@@ -337,70 +337,72 @@ export default function CheckoutPage() {
     <>
       <Greenheader />
       <Navber />
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
         {/* Breadcrumb */}
-        <nav className="text-sm text-gray-600 mb-4 flex items-center">
-          <Link href="/cart" className="hover:text-black">Cart</Link>
-          <CgChevronRight className="mx-2" />
-          <span className="text-black">Checkout</span>
+        <nav className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6 flex items-center flex-wrap">
+          <Link href="/cart" className="hover:text-black transition">Cart</Link>
+          <CgChevronRight className="mx-1 sm:mx-2 w-3 h-3 sm:w-4 sm:h-4" />
+          <span className="text-black font-medium">Checkout</span>
         </nav>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Order Summary */}
-          <div className="p-6 border rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+          <div className="p-4 sm:p-6 border rounded-lg shadow-sm">
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">Order Summary</h2>
             {cartItems.length > 0 ? (
-              cartItems.map((item) => (
-                <div key={item._id} className="flex items-center gap-4 border-b py-4">
-                  {item.image && (
-                    <Image
-                      src={urlFor(item.image).url()}
-                      alt={item.productName}
-                      width={64}
-                      height={64}
-                      className="rounded-lg"
-                    />
-                  )}
-                  <div className="flex-1">
-                    <h3 className="font-medium">{item.productName}</h3>
-                    <p className="text-sm text-gray-500">Quantity: {item.inventory}</p>
+              <div className="max-h-96 overflow-y-auto">
+                {cartItems.map((item) => (
+                  <div key={item._id} className="flex items-center gap-3 sm:gap-4 border-b py-3 sm:py-4 last:border-b-0">
+                    {item.image && (
+                      <Image
+                        src={urlFor(item.image).url()}
+                        alt={item.productName}
+                        width={64}
+                        height={64}
+                        className="rounded-lg w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-sm sm:text-base truncate">{item.productName}</h3>
+                      <p className="text-xs sm:text-sm text-gray-500 mt-1">Quantity: {item.inventory}</p>
+                    </div>
+                    <p className="font-medium text-sm sm:text-base flex-shrink-0">${item.price * item.inventory}</p>
                   </div>
-                  <p className="font-medium">${item.price * item.inventory}</p>
-                </div>
-              ))
+                ))}
+              </div>
             ) : (
-              <p>Your cart is empty.</p>
+              <p className="text-gray-500 text-center py-6">Your cart is empty.</p>
             )}
-            <div className="mt-4 text-right">
-              <p>Subtotal: <span className="font-semibold">${subtotal}</span></p>
-              <p>Discount: <span className="font-semibold">-${discount}</span></p>
-              <p className="text-lg font-bold">Total: ${total.toFixed(2)}</p>
+            <div className="mt-4 space-y-2 border-t pt-4">
+              <p className="flex justify-between text-sm sm:text-base">Subtotal: <span className="font-semibold">${subtotal}</span></p>
+              <p className="flex justify-between text-sm sm:text-base">Discount: <span className="font-semibold">-${discount}</span></p>
+              <p className="text-base sm:text-lg font-bold flex justify-between">Total: ${total.toFixed(2)}</p>
             </div>
           </div>
 
           {/* Billing Form */}
-          <div className="p-6 border rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Billing Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 sm:p-6 border rounded-lg shadow-sm">
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">Billing Information</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {Object.keys(formValues).map((key) => (
-                <div key={key}>
-                  <label className="block text-sm font-medium text-gray-700">{key.replace(/([A-Z])/g, ' $1')}</label>
+                <div key={key} className={key === 'address' ? 'sm:col-span-2' : ''}>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">{key.replace(/([A-Z])/g, ' $1').trim()}</label>
                   <input
                     id={key}
-                    placeholder={`Enter your ${key}`}
+                    placeholder={`Enter ${key.replace(/([A-Z])/g, ' $1').toLowerCase()}`}
                     value={formValues[key as keyof typeof formValues]}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded-lg focus:ring focus:ring-green-300"
+                    className="w-full p-2 sm:p-3 border rounded-lg focus:ring-2 focus:ring-green-300 focus:outline-none text-sm sm:text-base"
                   />
                   {formErrors[key as keyof typeof formErrors] && (
-                    <p className="text-sm text-red-500">{key.replace(/([A-Z])/g, ' $1')} is required.</p>
+                    <p className="text-xs sm:text-sm text-red-500 mt-1">{key.replace(/([A-Z])/g, ' $1').trim()} is required.</p>
                   )}
                 </div>
               ))}
             </div>
             <button
               onClick={handlePlaceOrder}
-              className="w-full mt-4 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+              className="w-full mt-4 sm:mt-6 bg-green-600 text-white py-2 sm:py-3 rounded-lg hover:bg-green-700 transition font-semibold text-sm sm:text-base"
             >
               Place Order
             </button>

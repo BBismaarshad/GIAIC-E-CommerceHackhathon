@@ -208,21 +208,21 @@ export default function ProductList() {
   };
 
   return (
-    <div className="py-24 bg-gray-100">
-      <div className="container mx-auto px-4">
-        <h4 className="text-center text-xl text-gray-600 font-medium">
+    <div className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-100">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h4 className="text-center text-base sm:text-lg md:text-xl text-gray-600 font-medium">
           Featured Products
         </h4>
-        <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-800 mt-4">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-3 sm:mt-4">
           BESTSELLER PRODUCTS
         </h2>
-        <p className="text-center text-gray-500 mt-3 mb-10 text-lg">
+        <p className="text-center text-gray-500 mt-2 sm:mt-3 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg px-2">
           Find the best products with amazing discounts
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {product.map((item) => (
-            <div key={item._id} className="bg-white shadow-lg rounded-lg p-5 transition transform hover:scale-105">
+            <div key={item._id} className="bg-white shadow-lg rounded-lg p-3 sm:p-4 md:p-5 transition transform hover:scale-105 hover:shadow-xl">
               <Link href={`/product/${item.slug.current}`}>
                 <div className="flex flex-col items-center">
                   {item.image && (
@@ -231,19 +231,19 @@ export default function ProductList() {
                       alt={item.productName}
                       width={250}
                       height={300}
-                      className="rounded-lg"
+                      className="rounded-lg w-full h-auto object-cover"
                     />
                   )}
-                  <h3 className="text-lg font-semibold text-gray-800 mt-4">{item.productName}</h3>
-                  <h5 className="text-gray-500 text-sm font-medium">English Department</h5>
-                  <h6 className="text-lg font-bold mt-2">
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mt-3 sm:mt-4 text-center line-clamp-2">{item.productName}</h3>
+                  <h5 className="text-gray-500 text-xs sm:text-sm font-medium mt-1">English Department</h5>
+                  <h6 className="text-sm sm:text-base md:text-lg font-bold mt-2">
                     <span className="text-gray-400 line-through mr-2">$16.48</span>
                     <span className="text-green-600">$6.48</span>
                   </h6>
                 </div>
               </Link>
               <button
-                className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg shadow-md hover:bg-blue-700 transition-all"
+                className="mt-3 sm:mt-4 w-full bg-blue-600 text-white py-2 sm:py-2.5 md:py-3 rounded-lg shadow-md hover:bg-blue-700 transition-all text-sm sm:text-base font-semibold"
                 onClick={(e) => handleAddToCart(e, item)}
               >
                 Add to Cart

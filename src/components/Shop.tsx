@@ -11,46 +11,45 @@ import shop5 from "../../public/shopimages/shop5.png";
 
 const Shop = () => {
   return (
-    <div className="bg-[#f5f5f5] ">
-      <div className="my-5  w-full h-auto flex flex-wrap justify-between px-5 py-5 items-center">
+    <div className="bg-[#f5f5f5]">
+      <div className="my-4 sm:my-6 md:my-8 w-full h-auto flex flex-wrap justify-between px-4 sm:px-6 py-4 sm:py-6 items-center">
         {/* Logo Section */}
         <div className="w-full sm:w-auto text-center sm:text-left">
           <ul>
-            <li className="text-[#252B42] font-bold text-2xl">Shop</li>
+            <li className="text-[#252B42] font-bold text-xl sm:text-2xl">Shop</li>
           </ul>
         </div>
 
         {/* Social Media Section */}
-        <div className="w-full sm:w-auto flex justify-center sm:justify-end mt-3 sm:mt-0">
-          <ul className="flex space-x-5">
+        <div className="w-full sm:w-auto flex justify-center sm:justify-end mt-2 sm:mt-0">
+          <ul className="flex space-x-3 sm:space-x-5 items-center">
             <li>
-              <Link href="/" className="text-xl font-semibold ">
+              <Link href="/" className="text-base sm:text-xl font-semibold">
                 Home
               </Link>
             </li>
             <li>
               <Link href="#">
-                <Image src={Vector} alt="Instagram" className="w-6 h-6" />
+                <Image src={Vector} alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6" />
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-[#BDBDBD] text-lg">
+              <Link href="#" className="text-[#BDBDBD] text-sm sm:text-base lg:text-lg">
                 Shop
               </Link>
             </li>
           </ul>
         </div>
-        {/* shop cards */}
       </div>
 
-      <div className=" mx-5 grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="mx-4 sm:mx-6 md:mx-8 grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {/* Image 1 */}
-        <div className="">
+        <div>
           <div className="relative">
             <Image
               src={shop1}
               alt="shop image 1"
-              className="w-full h-auto my-10 cursor-pointer "
+              className="w-full h-auto cursor-pointer rounded-lg shadow-md hover:shadow-xl transition"
             />
           </div>
         </div>
@@ -60,7 +59,7 @@ const Shop = () => {
             <Image
               src={shop2}
               alt="shop image 2"
-              className="w-full h-auto my-10 cursor-pointer  "
+              className="w-full h-auto cursor-pointer rounded-lg shadow-md hover:shadow-xl transition"
             />
           </div>
         </div>
@@ -70,7 +69,7 @@ const Shop = () => {
             <Image
               src={shop3}
               alt="shop image 3"
-              className="w-full h-auto my-10 cursor-pointer "
+              className="w-full h-auto cursor-pointer rounded-lg shadow-md hover:shadow-xl transition"
             />
           </div>
         </div>
@@ -80,7 +79,7 @@ const Shop = () => {
             <Image
               src={shop4}
               alt="shop image 4"
-              className="w-full h-auto my-10 cursor-pointer "
+              className="w-full h-auto cursor-pointer rounded-lg shadow-md hover:shadow-xl transition"
             />
           </div>
         </div>
@@ -90,7 +89,7 @@ const Shop = () => {
             <Image
               src={shop5}
               alt="shop image 5"
-              className="w-full h-auto my-10 cursor-pointer"
+              className="w-full h-auto cursor-pointer rounded-lg shadow-md hover:shadow-xl transition"
             />
           </div>
         </div>

@@ -355,82 +355,80 @@ const router = useRouter();
     <div>
       <Greenheader />
       <Navber />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-10 max-w-7xl">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Shopping Cart</h1>
         {cartItems.length > 0 ? (
-          <div className="grid gap-6">
+          <div className="flex flex-col gap-4 sm:gap-6">
             {cartItems.map((item) => (
               <div
                 key={item._id}
-                className="flex items-center justify-between border p-4 rounded-lg shadow-sm"
+                className="flex flex-col sm:flex-row items-start sm:items-center justify-between border p-4 sm:p-6 rounded-lg shadow-sm gap-4 sm:gap-0"
               >
-                <div className="flex items-center gap-4">
-                  {/* <Image
-                  src={item.image}
-                  alt={item.name}
-                  className="w-16 h-16 object-cover rounded-md"
-                /> */}
-
+                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
                   {item.image && (
                     <Image
                       src={urlFor(item.image).url()}
-                      alt="product"
-                      className="w-16 h-16 object-cover rounded-md"
+                      alt={item.productName}
+                      className="w-20 h-20 sm:w-16 sm:h-16 object-cover rounded-md flex-shrink-0"
                       width={400}
                       height={400}
                     />
                   )}
-                  <div>
-                    <h2 className="text-lg font-semibold">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-sm sm:text-lg font-semibold truncate">
                       {item.productName}
                     </h2>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-xs sm:text-sm text-gray-500 mt-1">
                       ${item.price.toFixed(2)}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => handleDecrement(item._id)}
-                    className="px-2 py-1 bg-gray-200 text-gray-700 rounded-md"
-                  >
-                    -
-                  </button>
-                  <span className="text-lg font-medium">{item.inventory}</span>
-                  <button
-                    onClick={() => handleIncrement(item._id)}
-                    className="px-2 py-1 bg-gray-200 text-gray-700 rounded-md"
-                  >
-                    +
-                  </button>
-                </div>
-                <div>
-                  <p className="text-lg font-semibold">
-                    ${(item.price * item.inventory).toFixed(2)}
-                  </p>
-                  <button
-                    onClick={() => handleRemove(item._id)}
-                    className="text-red-500 hover:underline text-sm mt-1"
-                  >
-                    Remove
-                  </button>
+                <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full sm:w-auto mt-3 sm:mt-0">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleDecrement(item._id)}
+                      className="px-2 sm:px-3 py-1 sm:py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition text-sm sm:text-base"
+                      aria-label="Decrease quantity"
+                    >
+                      -
+                    </button>
+                    <span className="text-sm sm:text-lg font-medium min-w-[30px] text-center">{item.inventory}</span>
+                    <button
+                      onClick={() => handleIncrement(item._id)}
+                      className="px-2 sm:px-3 py-1 sm:py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition text-sm sm:text-base"
+                      aria-label="Increase quantity"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm sm:text-lg font-semibold">
+                      ${(item.price * item.inventory).toFixed(2)}
+                    </p>
+                    <button
+                      onClick={() => handleRemove(item._id)}
+                      className="text-red-500 hover:underline text-xs sm:text-sm mt-1"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
-            <div className="mt-6 flex justify-between items-center">
-              <h2 className="text-xl font-bold">
+            <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 border-t pt-4 sm:pt-6">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold">
                 Total: ${calculateTotal().toFixed(2)}
               </h2>
               <button
                 onClick={handleProceed}
-                className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600"
+                className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition text-sm sm:text-base"
               >
                 Proceed to Checkout
               </button>
             </div>
           </div>
         ) : (
-          <p className="text-gray-500 text-center">Your cart is empty.</p>
+          <p className="text-gray-500 text-center py-8 sm:py-10 text-sm sm:text-base">Your cart is empty.</p>
         )}
       </div>
     </div>
